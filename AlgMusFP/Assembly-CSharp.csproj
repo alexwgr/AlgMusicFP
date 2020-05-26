@@ -62,8 +62,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Driver.cs" />
-    <Compile Include="Assets\Vec2Extensions.cs" />
+    <Compile Include="Assets\CannonBlast.cs" />
+    <Compile Include="Assets\CannonController.cs" />
+    <Compile Include="Assets\Scripts\Driver.cs" />
+    <Compile Include="Assets\Scripts\PlanetBehavior.cs" />
+    <Compile Include="Assets\Scripts\Resources.cs" />
+    <Compile Include="Assets\Scripts\Vec2Extensions.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/alexw/Documents/UCSC/Classes/Algorithmic Music/AlgMusicFP/AlgMusFP/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
