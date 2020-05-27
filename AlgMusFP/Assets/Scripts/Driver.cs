@@ -18,6 +18,7 @@ public class Driver : MonoBehaviour
 
     bool boostLock = false;
     public Rigidbody2D rigidBody;
+    public SpriteRenderer flameButt;
 
     public void pushVertical(float verticalDirection) {        
         directionAngle = directionAngle + verticalDirection;
@@ -57,10 +58,12 @@ public class Driver : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        flameButt.color = Color.clear;
         var direction = new Vector2(Mathf.Cos(directionAngle * Mathf.Deg2Rad), Mathf.Sin(directionAngle * Mathf.Deg2Rad));
         var boostRequest = Input.GetButton("Jump");
         if (boostRequest && !boostLock) {
             rigidBody.AddForce(direction * BoostForce);
+            flameButt.color = Color.white;
         } else if (!boostRequest && boostLock) {
             boostLock = false;
         }
@@ -81,7 +84,7 @@ public class Driver : MonoBehaviour
 
             //var forceDirection = rigidBody.velocity -  * displacement;
             rigidBody.velocity = auraTimer * auraEntryVelocity + (1 - auraTimer) * targetVelocity;
-            auraTimer = Mathf.Max(0, auraTimer - 0.1f);
+            auraTimer = Mathf.Max(0, auraTimer - 0.2f);
 
             directionAngle = Vector2.SignedAngle(Vector2.right, targetVelocity);
 
@@ -105,7 +108,7 @@ public class Driver : MonoBehaviour
 
             direction = new Vector2(Mathf.Cos(rigidBody.rotation * Mathf.Deg2Rad), Mathf.Sin(rigidBody.rotation * Mathf.Deg2Rad));
             var targetDisplace = (inputVector - direction);
-            direction = direction + targetDisplace.normalized * Mathf.Min(targetDisplace.magnitude, 0.1f);
+            direction = direction + targetDisplace.normalized * Mathf.Min(targetDisplace.magnitude, 0.2f);
             directionAngle = Vector2.SignedAngle(Vector2.right, direction);
 
         }

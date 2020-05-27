@@ -62,6 +62,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\CameraControl.cs" />
     <Compile Include="Assets\CannonBlast.cs" />
     <Compile Include="Assets\CannonController.cs" />
     <Compile Include="Assets\ChargeController.cs" />
