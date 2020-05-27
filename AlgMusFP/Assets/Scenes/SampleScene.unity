@@ -418,6 +418,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spaceship
       objectReference: {fileID: 0}
+    - target: {fileID: 2352500933217658523, guid: 4964227d161ff0f4ba04b39b29136e4e,
+        type: 3}
+      propertyPath: driver
+      value: 
+      objectReference: {fileID: 1372882990}
+    - target: {fileID: 2352500933217658523, guid: 4964227d161ff0f4ba04b39b29136e4e,
+        type: 3}
+      propertyPath: Resource
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2352500933217658523, guid: 4964227d161ff0f4ba04b39b29136e4e,
+        type: 3}
+      propertyPath: ChargeTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2149213628790047492, guid: 4964227d161ff0f4ba04b39b29136e4e,
+        type: 3}
+      propertyPath: driver
+      value: 
+      objectReference: {fileID: 1372882990}
+    - target: {fileID: 2149213628790047492, guid: 4964227d161ff0f4ba04b39b29136e4e,
+        type: 3}
+      propertyPath: Resource
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2149213628790047492, guid: 4964227d161ff0f4ba04b39b29136e4e,
+        type: 3}
+      propertyPath: ChargeTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5745458676760723116, guid: 4964227d161ff0f4ba04b39b29136e4e,
         type: 3}
       propertyPath: MaxVelocity
@@ -431,7 +461,7 @@ PrefabInstance:
     - target: {fileID: 5745458676760723116, guid: 4964227d161ff0f4ba04b39b29136e4e,
         type: 3}
       propertyPath: Deceleration
-      value: 0.02
+      value: 0.0125
       objectReference: {fileID: 0}
     - target: {fileID: 2036901676119535045, guid: 4964227d161ff0f4ba04b39b29136e4e,
         type: 3}
@@ -549,36 +579,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1372882990}
     - target: {fileID: 2975255113497857446, guid: 4964227d161ff0f4ba04b39b29136e4e,
-        type: 3}
-      propertyPath: ChargeTime
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2352500933217658523, guid: 4964227d161ff0f4ba04b39b29136e4e,
-        type: 3}
-      propertyPath: driver
-      value: 
-      objectReference: {fileID: 1372882990}
-    - target: {fileID: 2352500933217658523, guid: 4964227d161ff0f4ba04b39b29136e4e,
-        type: 3}
-      propertyPath: Resource
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2352500933217658523, guid: 4964227d161ff0f4ba04b39b29136e4e,
-        type: 3}
-      propertyPath: ChargeTime
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2149213628790047492, guid: 4964227d161ff0f4ba04b39b29136e4e,
-        type: 3}
-      propertyPath: driver
-      value: 
-      objectReference: {fileID: 1372882990}
-    - target: {fileID: 2149213628790047492, guid: 4964227d161ff0f4ba04b39b29136e4e,
-        type: 3}
-      propertyPath: Resource
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2149213628790047492, guid: 4964227d161ff0f4ba04b39b29136e4e,
         type: 3}
       propertyPath: ChargeTime
       value: 1
