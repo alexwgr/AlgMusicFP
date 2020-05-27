@@ -9,6 +9,7 @@ public class Driver : MonoBehaviour
     public float MaxVelocity, BoostForce, Deceleration;
 
     float directionAngle;
+    public float DirectionAngle { get { return directionAngle; } }
 
 
     Transform auraTarget = null;
@@ -64,47 +65,50 @@ public class Driver : MonoBehaviour
             boostLock = false;
         }
 
-        var verticalInput = Input.GetAxis("Vertical");
+        var inputVector = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
 
-        if (auraTarget != null && (boostLock || !boostRequest)) {
+        if (auraTarget != null) {
 
+            if ((boostLock || !boostRequest)) {
+                var displacement = (Vector2)(auraTarget.position - transform.position);
+                var displacementNorm = displacement.normalized;
+                var problemComponent = Vector2.Dot(rigidBody.velocity, displacementNorm);
+                var targetVelocity = (rigidBody.velocity - problemComponent * displacementNorm).normalized * MaxVelocity * 0.75f;
 
-            var displacement = (Vector2)(auraTarget.position - transform.position);
-            var displacementNorm = displacement.normalized;
-            var problemComponent = Vector2.Dot(rigidBody.velocity, displacementNorm);
-            var targetVelocity = (rigidBody.velocity - problemComponent * displacementNorm).normalized * MaxVelocity * 0.75f;
+                var idealRadius = auraTarget.GetComponent<CircleCollider2D>().radius * 0.75f;
+                var downComponent = displacementNorm * Mathf.Max(0, displacement.magnitude - idealRadius) / idealRadius;
 
-            var idealRadius = auraTarget.GetComponent<CircleCollider2D>().radius * 0.75f;
-            var downComponent = displacementNorm * Mathf.Max(0, displacement.magnitude - idealRadius) / idealRadius;
+                targetVelocity += downComponent;
 
-            targetVelocity += downComponent;
+                //var forceDirection = rigidBody.velocity -  * displacement;
+                rigidBody.velocity = auraTimer * auraEntryVelocity + (1 - auraTimer) * targetVelocity;
+                auraTimer = Mathf.Max(0, auraTimer - 0.1f);
 
-            //var forceDirection = rigidBody.velocity -  * displacement;
-            rigidBody.velocity = auraTimer * auraEntryVelocity + (1 - auraTimer) * targetVelocity;
-            auraTimer = Mathf.Max(0, auraTimer - 0.1f);
+                directionAngle = Vector2.SignedAngle(Vector2.right, targetVelocity);
 
-            directionAngle = Vector2.SignedAngle(Vector2.right, targetVelocity);
-
-            auraPrevDirection = rigidBody.velocity.normalized;
-            //pushToDirection(targetVelocity);
-            //rigidBody.AddForce(-0.5f * problemComponent * displacement);
+                auraPrevDirection = rigidBody.velocity.normalized;
+                //pushToDirection(targetVelocity);
+                //rigidBody.AddForce(-0.5f * problemComponent * displacement);
+            }
 
         } else {
             if (!boostRequest || boostLock) {
                 rigidBody.velocity = rigidBody.velocity.normalized * (Mathf.Max(0, rigidBody.velocity.magnitude - Deceleration));
             }
+            directionAngle = Vector2.SignedAngle(Vector2.right, inputVector);
+
+
+            //direction = new Vector2(Mathf.Cos(rigidBody.rotation * Mathf.Deg2Rad), Mathf.Sin(rigidBody.rotation * Mathf.Deg2Rad));
+           
         }
-
-
-        pushVertical(verticalInput * (boostRequest ? 2.5f : 6f));
-
-        
-
-        //direction = new Vector2(Mathf.Cos(rigidBody.rotation * Mathf.Deg2Rad), Mathf.Sin(rigidBody.rotation * Mathf.Deg2Rad));
         rigidBody.SetRotation(directionAngle);
 
-        
+        //pushVertical(verticalInput * (boostRequest ? 2.5f : 6f));
+
+
+
+
 
 
         if (rigidBody.velocity.magnitude > MaxVelocity) {

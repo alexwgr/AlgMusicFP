@@ -64,6 +64,8 @@
   <ItemGroup>
     <Compile Include="Assets\CannonBlast.cs" />
     <Compile Include="Assets\CannonController.cs" />
+    <Compile Include="Assets\ChargeController.cs" />
+    <Compile Include="Assets\ChargesController.cs" />
     <Compile Include="Assets\Scripts\Driver.cs" />
     <Compile Include="Assets\Scripts\PlanetBehavior.cs" />
     <Compile Include="Assets\Scripts\Resources.cs" />
