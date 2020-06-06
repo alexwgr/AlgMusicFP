@@ -30,7 +30,6 @@ public class Driver : MonoBehaviour
 
     }
 
-
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Aura")) {
             auraTarget = collision.gameObject.transform;
@@ -39,21 +38,34 @@ public class Driver : MonoBehaviour
             boostLock = true;
             auraTimer = 1f;
 
+            OSCHandler.Instance.SendMessageToClient("pd", "/unity/aurastate", 1);
 
-            
+
         }
     }
     private void OnTriggerExit2D(Collider2D collision) {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Aura")) {
             auraTarget = null;
+            OSCHandler.Instance.SendMessageToClient("pd", "/unity/aurastate", 0);
         }
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        OSCHandler.Instance.SendMessageToClient("pd", "/unity/start", 1);
+
         directionAngle = 0;
+
+
     }
+
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            OSCHandler.Instance.SendMessageToClient("pd", "/unity/start", 0);
+        }
+    }
+
 
     // Update is called once per frame
     void FixedUpdate()
@@ -66,6 +78,12 @@ public class Driver : MonoBehaviour
             flameButt.color = Color.white;
         } else if (!boostRequest && boostLock) {
             boostLock = false;
+        }
+
+        if (Input.GetButtonDown("Jump")) {
+            OSCHandler.Instance.SendMessageToClient("pd", "/unity/rocket", 1);
+        } else if (Input.GetButtonUp("Jump")) {
+            OSCHandler.Instance.SendMessageToClient("pd", "/unity/norocket", 1);
         }
 
         var inputVector = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));

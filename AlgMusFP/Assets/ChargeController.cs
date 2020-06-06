@@ -19,6 +19,8 @@ public class ChargeController : MonoBehaviour
     public SpriteRenderer sprite;
 
 
+    Vector2 fireAxis;
+
     float resetTimer = 0;
 
 
@@ -26,13 +28,15 @@ public class ChargeController : MonoBehaviour
         chargeStrength = Mathf.Min(1, chargeStrength + 1 / (ChargeTime / Time.fixedDeltaTime));
     }
 
-    public void Fire(float angle) {
+    public void Fire() {
+        var angle = driver.GetComponent<Rigidbody2D>().rotation;
         if (chargeStrength > 0) {
             chargeStrength = Mathf.Max(0, chargeStrength - 1f / DepleteShots);
 
-            var shot = Instantiate(ShotPrefab, transform.position, driver.transform.rotation);
-            shot.transform.localPosition += new Vector3(0, Random.Range(-0.35f, 0.35f));
+           
         }
+        var shot = Instantiate(ShotPrefab, transform.position, driver.transform.rotation);
+        shot.transform.localPosition += new Vector3(0, Random.Range(-0.35f, 0.35f));
 
     }
 
@@ -49,17 +53,10 @@ public class ChargeController : MonoBehaviour
         sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, chargeStrength);
 
 
-        var fireAxis = new Vector2(Input.GetAxis("FireX"), Input.GetAxis("FireY"));
+        fireAxis = new Vector2(Input.GetAxis("FireX"), Input.GetAxis("FireY"));
        
 
-        if (Input.GetButton("Fire")) {
-            if (resetTimer <= 0) {
-                resetTimer = 0.1f;
-                Fire(driver.GetComponent<Rigidbody2D>().rotation);
-            } else {
-                resetTimer -= Time.deltaTime;
-            }
-        }
+        
 
 
     }

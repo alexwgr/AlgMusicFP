@@ -11,10 +11,20 @@ public class ChargesController : MonoBehaviour
     bool charging = false;
     PlanetResources chargeResource;
 
+    public bool ChargingBlue { get { return charging && chargeResource == PlanetResources.blue; } }
+    public bool ChargingYellow { get { return charging && chargeResource == PlanetResources.yellow; } }
+    public bool CharingRed { get { return charging && chargeResource == PlanetResources.red; } }
+
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Aura")) {
             chargeResource = collision.gameObject.transform.parent.GetComponent<PlanetBehavior>().Resource;
             charging = true;
+
+            if (chargeResource == PlanetResources.blue) {
+                OSCHandler.Instance.SendMessageToClient("pd", "/unity/blueAura", 1);
+            } else if (chargeResource == PlanetResources.yellow) {
+                OSCHandler.Instance.SendMessageToClient("pd", "/unity/yellowAura", 1);
+            }
         }
     }
 
