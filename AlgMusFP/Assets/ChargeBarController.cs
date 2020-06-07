@@ -94,7 +94,7 @@ public class ChargeBarController : MonoBehaviour
                                 var currState = BlueBar[beat].GetState();
                                 if (currState > 0) {                                    
                                     BlueCharge.Fire();
-                                    BlueBar[beat].SetState(currState - 1f);
+                                    BlueBar[beat].SetState(currState - 0.5f);
                                     BlueBar[beat].Flash();
                                 }
                             }
@@ -107,15 +107,16 @@ public class ChargeBarController : MonoBehaviour
                             OSCHandler.Instance.SendMessageToClient("pd", "/unity/yellowFireSignal", beat);
                             yellowPrevBeat = beat;
 
-                        }
 
-                        if (Input.GetButton("Fire")) {
 
-                            var currState = YellowBar[beat].GetState();
-                            if (currState > 0) {
-                                YellowCharge.Fire();
-                                YellowBar[beat].SetState(currState - 1f);
-                                YellowBar[beat].Flash();
+                            if (Input.GetButton("Fire")) {
+
+                                var currState = YellowBar[beat].GetState();
+                                if (currState > 0) {
+                                    YellowCharge.Fire();
+                                    YellowBar[beat].SetState(currState - 0.5f);
+                                    YellowBar[beat].Flash();
+                                }
                             }
                         }
                     }

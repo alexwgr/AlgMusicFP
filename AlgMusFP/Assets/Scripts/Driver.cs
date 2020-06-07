@@ -64,6 +64,11 @@ public class Driver : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space)) {
             OSCHandler.Instance.SendMessageToClient("pd", "/unity/start", 0);
         }
+        if (Input.GetButtonDown("Jump")) {
+            OSCHandler.Instance.SendMessageToClient("pd", "/unity/rocket", 1);
+        } else if (Input.GetButtonUp("Jump")) {
+            OSCHandler.Instance.SendMessageToClient("pd", "/unity/norocket", 1);
+        }
     }
 
 
@@ -80,11 +85,7 @@ public class Driver : MonoBehaviour
             boostLock = false;
         }
 
-        if (Input.GetButtonDown("Jump")) {
-            OSCHandler.Instance.SendMessageToClient("pd", "/unity/rocket", 1);
-        } else if (Input.GetButtonUp("Jump")) {
-            OSCHandler.Instance.SendMessageToClient("pd", "/unity/norocket", 1);
-        }
+        
 
         var inputVector = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
