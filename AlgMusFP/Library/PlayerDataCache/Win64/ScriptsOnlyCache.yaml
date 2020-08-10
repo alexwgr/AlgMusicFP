@@ -1,6 +1,7 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - BackgroundManager
     - BeatController
     - CameraControl
     - CannonBlast
@@ -72,6 +73,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 10448}
     - Class: 114
       Script: {instanceID: 10588}
+    - Class: 114
+      Script: {instanceID: 12122}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -641,7 +644,7 @@ ScriptsOnlyBuild:
     className: SignalReceiver
   - hash:
       serializedVersion: 2
-      Hash: 594f5f72d16571733457954d75e70c4d
+      Hash: 84734794849f77ebc4b3879bc2c503d6
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ChargesController
@@ -783,6 +786,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 268a12de57990fbfda82e8e0a1f76d47
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BackgroundManager
   platform: 19
   scenePathNames:
   - Assets/Scenes/SampleScene.unity

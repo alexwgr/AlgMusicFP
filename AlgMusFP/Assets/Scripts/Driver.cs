@@ -54,6 +54,8 @@ public class Driver : MonoBehaviour
     void Start()
     {
         OSCHandler.Instance.SendMessageToClient("pd", "/unity/start", 1);
+        OSCHandler.Instance.SendMessageToClient("pd", "/unity/yellowAura", 0);
+        OSCHandler.Instance.SendMessageToClient("pd", "/unity/blueAura", 0);
 
         directionAngle = 0;
 

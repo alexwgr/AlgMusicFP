@@ -4,7 +4,9 @@ using UnityEngine;
 using static Assets.Resources;
 
 public class ChargesController : MonoBehaviour
-{   
+{
+    public BackgroundManager bckgdMgr;
+
     public List<ChargeController> CannonCharges = new List<ChargeController>();
     Dictionary<PlanetResources, ChargeController> indexedCharges = new Dictionary<PlanetResources, ChargeController>();
 
@@ -22,8 +24,11 @@ public class ChargesController : MonoBehaviour
 
             if (chargeResource == PlanetResources.blue) {
                 OSCHandler.Instance.SendMessageToClient("pd", "/unity/blueAura", 1);
+                bckgdMgr.SetBlueBackground();
+
             } else if (chargeResource == PlanetResources.yellow) {
                 OSCHandler.Instance.SendMessageToClient("pd", "/unity/yellowAura", 1);
+                bckgdMgr.SetYellowBackground();
             }
         }
     }
